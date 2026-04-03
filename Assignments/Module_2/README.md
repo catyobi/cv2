@@ -4,7 +4,7 @@ This folder contains exercises for Module 2, focused on image intensity transfor
 
 ---
 
-## 📌 Exercise 1 & 2 – Intensity Transformations and Thresholding
+##  Exercise 1 & 2 – Intensity Transformations and Thresholding
 
 These exercises explore:
 - Brightness and contrast adjustments
@@ -15,7 +15,7 @@ A personal image was used to test and visualize the transformations.
 
 ---
 
-## 📌 Exercise 3 – Interactive Image Processing App
+##  Exercise 3 – Interactive Image Processing App
 
 An interactive app created using Google AI Studio.
 
