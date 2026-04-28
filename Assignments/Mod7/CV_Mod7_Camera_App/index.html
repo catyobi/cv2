@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Face Detection Camera App</title>
+
+<style>
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+video, canvas {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+canvas {
+    z-index: 1;
+}
+
+video {
+    z-index: 0;
+}
+
+.buttons {
+    margin-top: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.start { background: green; color: white; }
+.stop { background: red; color: white; }
+</style>
+</head>
+
+<body>
+
+<h2>Face Detection (Camera App)</h2>
+<p>Real-time face detection using TensorFlow.js</p>
+
+<div class="buttons">
+    <button class="start" onclick="startCamera()">Start Camera</button>
+    <button class="stop" onclick="stopCamera()">Stop Camera</button>
+    <button onclick="takeScreenshot()">Screenshot</button>
+</div>
+
+<video id="video" width="600" autoplay muted></video>
+<canvas id="canvas"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
