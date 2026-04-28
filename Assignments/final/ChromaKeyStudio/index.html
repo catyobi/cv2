@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma Key Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Chroma Key Studio</h1>
+            <p>Click anywhere on the video background to make it transparent.</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left: Video & Chroma Key Output -->
+            <div class="video-container">
+                <div class="video-layer-container">
+                    <!-- The background that will be revealed -->
+                    <div id="virtualBackground" class="virtual-background" style="background-image: url('assets/modern_office.png');"></div>
+                    <!-- The webcam output with alpha transparency -->
+                    <canvas id="canvasOutput" width="640" height="480"></canvas>
+                    <video id="videoInput" width="640" height="480" autoplay playsinline hidden></video>
+                </div>
+                
+                <div class="status-panel">
+                    <p id="statusMessage" class="loading">Initializing OpenCV.js... Please wait.</p>
+                </div>
+                
+                <div class="mask-preview">
+                    <h3>Mask Preview (Debug)</h3>
+                    <canvas id="maskOutput" width="320" height="240"></canvas>
+                </div>
+            </div>
+
+            <!-- Right: Controls -->
+            <div class="controls-container">
+                <h2>Virtual Backgrounds</h2>
+                <div class="bg-selector">
+                    <div class="bg-option active" data-bg="assets/modern_office.png" style="background-image: url('assets/modern_office.png');">
+                        <span>Modern Office</span>
+                    </div>
+                    <div class="bg-option" data-bg="assets/cyberpunk_city.png" style="background-image: url('assets/cyberpunk_city.png');">
+                        <span>Cyberpunk</span>
+                    </div>
+                    <div class="bg-option css-gradient" data-bg="gradient-1">
+                        <span>Gradient 1</span>
+                    </div>
+                    <div class="bg-option css-gradient-2" data-bg="gradient-2">
+                        <span>Gradient 2</span>
+                    </div>
+                </div>
+
+                <h2>Fine-Tune Keying</h2>
+                <p class="instruction">Click the canvas to pick a color, or adjust manually below.</p>
+                <div class="slider-group">
+                    <div class="control-group">
+                        <label>Hue Min (<span id="hMinVal">0</span>)</label>
+                        <input type="range" id="hMin" min="0" max="179" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label>Hue Max (<span id="hMaxVal">179</span>)</label>
+                        <input type="range" id="hMax" min="0" max="179" value="179">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Saturation Min (<span id="sMinVal">0</span>)</label>
+                        <input type="range" id="sMin" min="0" max="255" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label>Saturation Max (<span id="sMaxVal">255</span>)</label>
+                        <input type="range" id="sMax" min="0" max="255" value="255">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Value Min (<span id="vMinVal">0</span>)</label>
+                        <input type="range" id="vMin" min="0" max="255" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label>Value Max (<span id="vMaxVal">255</span>)</label>
+                        <input type="range" id="vMax" min="0" max="255" value="255">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OpenCV.js -->
+    <script async src="https://docs.opencv.org/4.8.0/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
